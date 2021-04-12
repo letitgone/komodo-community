@@ -1,12 +1,9 @@
 package com.komodo.community.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.komodo.community.pojo.DataBaseInfo;
+import com.komodo.community.pojo.ConnectionInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.yaml.snakeyaml.Yaml;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 /**
  * @Author ZhangGJ
@@ -14,8 +11,6 @@ import java.io.FileNotFoundException;
  */
 @Slf4j
 public class YamlUtil {
-
-    private static final String FILE_URL = "src/main/resources/config-database.yml";
 
     /**
      * 读取yaml
@@ -29,13 +24,10 @@ public class YamlUtil {
      */
     public static <T> T readYaml(String keys, Class<T> clazz) {
         Yaml yaml = new Yaml();
-        JSONObject o = null;
-        try {
-            o = yaml.loadAs((new FileInputStream(FILE_URL)), JSONObject.class);
-        } catch (FileNotFoundException e) {
-            log.error("Error configuration: Config-database.yml");
-            return null;
-        }
+        JSONObject o = yaml.loadAs(
+                YamlUtil.class.getClassLoader().getResourceAsStream("config-database.yml"),
+                JSONObject.class);
+        keys = keys.toLowerCase();
         String[] keysArray = keys.split("\\.");
         JSONObject result = null;
         T t;
@@ -63,9 +55,9 @@ public class YamlUtil {
             t = (T) result.getString(keysArray[keysArray.length - 1]);
         } else if (clazz.isAssignableFrom(Boolean.class)) {
             t = (T) result.getBoolean(keysArray[keysArray.length - 1]);
-        } else if (clazz.isAssignableFrom(DataBaseInfo.class)) {
+        } else if (clazz.isAssignableFrom(ConnectionInfo.class)) {
             t = (T) result.getJSONObject(keysArray[keysArray.length - 1])
-                    .toJavaObject(DataBaseInfo.class);
+                    .toJavaObject(ConnectionInfo.class);
         } else {
             throw new RuntimeException("Unknown type!");
         }
