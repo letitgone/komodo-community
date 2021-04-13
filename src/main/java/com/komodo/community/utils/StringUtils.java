@@ -1,14 +1,12 @@
 package com.komodo.community.utils;
 
-import com.sun.istack.internal.Nullable;
-
 /**
  * @Author ZhangGJ
  * @Date 2021/04/12 22:44
  */
 public class StringUtils {
 
-    public static boolean hasText(@Nullable String str) {
+    public static boolean hasText(String str) {
         return (str != null && !str.isEmpty() && containsText(str));
     }
 

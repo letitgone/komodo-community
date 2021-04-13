@@ -1,7 +1,5 @@
 package com.komodo.community.yaml;
 
-import com.sun.istack.internal.Nullable;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -50,7 +48,8 @@ public class SortedProperties extends Properties {
 
 
     @Override
-    public void store(OutputStream out, @Nullable String comments) throws IOException {
+    public void store(OutputStream out,
+            String comments) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         super.store(baos, (this.omitComments ? null : comments));
         String contents = new String(baos.toByteArray(), StandardCharsets.ISO_8859_1);
@@ -62,7 +61,7 @@ public class SortedProperties extends Properties {
     }
 
     @Override
-    public void store(Writer writer, @Nullable
+    public void store(Writer writer,
             String comments) throws IOException {
         StringWriter stringWriter = new StringWriter();
         super.store(stringWriter, (this.omitComments ? null : comments));
@@ -75,12 +74,12 @@ public class SortedProperties extends Properties {
     }
 
     @Override
-    public void storeToXML(OutputStream out, @Nullable String comments) throws IOException {
+    public void storeToXML(OutputStream out, String comments) throws IOException {
         super.storeToXML(out, (this.omitComments ? null : comments));
     }
 
     @Override
-    public void storeToXML(OutputStream out, @Nullable String comments, String encoding) throws IOException {
+    public void storeToXML(OutputStream out, String comments, String encoding) throws IOException {
         super.storeToXML(out, (this.omitComments ? null : comments), encoding);
     }
 

@@ -1,7 +1,6 @@
 package com.komodo.community.yaml;
 
 import com.komodo.community.utils.StringUtils;
-import com.sun.istack.internal.Nullable;
 import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.reader.UnicodeReader;
@@ -150,7 +149,6 @@ public class OriginTrackedYamlLoader {
     private static Properties createStringAdaptingProperties() {
         return new SortedProperties(false) {
             @Override
-            @Nullable
             public String getProperty(String key) {
                 Object value = get(key);
                 return (value != null ? value.toString() : null);
