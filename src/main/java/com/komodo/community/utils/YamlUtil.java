@@ -1,7 +1,6 @@
 package com.komodo.community.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.komodo.community.pojo.ConnectionInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.yaml.snakeyaml.Yaml;
 
@@ -57,11 +56,8 @@ public class YamlUtil {
             t = (T) result.getBoolean(keysArray[keysArray.length - 1]);
         } else if (clazz.isAssignableFrom(Map.class)) {
             t = (T) result.getJSONObject(keysArray[keysArray.length - 1]);
-        } else if (clazz.isAssignableFrom(ConnectionInfo.class)) {
-            t = (T) result.getJSONObject(keysArray[keysArray.length - 1])
-                    .toJavaObject(ConnectionInfo.class);
         } else {
-            throw new RuntimeException("Unknown type!");
+            t = result.getObject(keysArray[keysArray.length - 1], clazz);
         }
         return t;
     }
