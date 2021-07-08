@@ -6,5 +6,8 @@ package com.komodo.community.enums;
  */
 public enum DatasourceEnum {
 
+    /**
+     * DataSource
+     */
     MYSQL, ORACLE
 }
