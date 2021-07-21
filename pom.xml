@@ -62,6 +62,11 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.6</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -115,7 +120,7 @@
         <profile>
             <id>dev</id>
             <properties>
-                <repository.url>8.140.171.253:8081</repository.url>
+                <repository.url>8.140.171.253:30881</repository.url>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -124,19 +129,19 @@
         <profile>
             <id>bug</id>
             <properties>
-                <repository.url>8.1408888.171.253:8081</repository.url>
+                <repository.url>8.140.171.253:30881</repository.url>
             </properties>
         </profile>
         <profile>
             <id>release</id>
             <properties>
-                <repository.url>8.140.171.253:8081</repository.url>
+                <repository.url>8.140.171.253:30881</repository.url>
             </properties>
         </profile>
         <profile>
             <id>master</id>
             <properties>
-                <repository.url>8.140.171.253:8081</repository.url>
+                <repository.url>8.140.171.253:30881</repository.url>
             </properties>
         </profile>
     </profiles>
